@@ -216,9 +216,9 @@ GameObject:
   - component: {fileID: -2129537658903958084}
   - component: {fileID: 7414958756589178928}
   - component: {fileID: 5607912279158709542}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -493,7 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed5dce70f76f89489dd79c54676b6b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunSystem
-  fpsCam: {fileID: 0}
+  fpsCam: {fileID: 2069092283314399613}
   shootPoint: {fileID: 0}
   impactLayer:
     serializedVersion: 2
@@ -506,6 +506,7 @@ MonoBehaviour:
   allowButtonHold: 0
   ammoSize: 30
   bulletsPerTap: 1
+  bulletsLeft: 0
   impactEffect: {fileID: 0}
   shooting: 0
   canShoot: 0

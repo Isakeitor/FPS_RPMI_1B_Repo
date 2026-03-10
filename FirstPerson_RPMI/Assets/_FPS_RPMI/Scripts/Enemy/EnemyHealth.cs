@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy_Health : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     [Header("Health System Management")]
     [SerializeField] int maxHealth = 100; //Vida máxima del enemigo
