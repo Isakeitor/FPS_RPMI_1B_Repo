@@ -85,6 +85,13 @@ public class FPController : MonoBehaviour
         targetVelocity *= isCrouching ?crouchSpeed : isSprinting ? sprintSpeed : speed; 
         targetVelocity = transform.TransformDirection(targetVelocity); //Convierte la direccion local a global
 
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, targetVelocity.normalized, out hit, 1f))
+        {
+            targetVelocity = Vector3.ProjectOnPlane(targetVelocity, hit.normal);
+        }
+
         //Calcular el cambio de velocidad (aceleracion)
         Vector3 velocityChange = (targetVelocity - currenntVelocoty);
         velocityChange = new Vector3(velocityChange.x, 0, velocityChange.z);

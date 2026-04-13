@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: -2129537658903958084}
   - component: {fileID: 7414958756589178928}
   - component: {fileID: 5607912279158709542}
+  - component: {fileID: 8608266996053322234}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -493,11 +494,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed5dce70f76f89489dd79c54676b6b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunSystem
+  playerInteraction: {fileID: 0}
   fpsCam: {fileID: 2069092283314399613}
   shootPoint: {fileID: 0}
   impactLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   damage: 10
   range: 100
   spread: 0
@@ -511,6 +513,24 @@ MonoBehaviour:
   shooting: 0
   canShoot: 0
   reloading: 0
+--- !u!114 &8608266996053322234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836897433645403241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1757130b7d285264189ba9f3a8453443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
+  interactionDistance: 1.5
+  interactLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  cam: {fileID: 0}
+  interactUI: {fileID: 0}
 --- !u!1001 &4633367782476834120
 PrefabInstance:
   m_ObjectHideFlags: 0

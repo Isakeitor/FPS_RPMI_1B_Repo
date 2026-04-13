@@ -478,11 +478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed5dce70f76f89489dd79c54676b6b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunSystem
---- !u!4 &1037954273 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5254408015123864690, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
-  m_PrefabInstance: {fileID: 636147895447475299}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1311352950
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,6 +644,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1822560736 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8608266996053322234, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
+  m_PrefabInstance: {fileID: 636147895447475299}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1757130b7d285264189ba9f3a8453443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
 --- !u!1 &1880982929
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,6 +914,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2618237634513284717, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2847207725397122467, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Name
       value: PF_EnemyProto
@@ -955,10 +965,18 @@ PrefabInstance:
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 1037954273}
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: targetLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 6223972593975174940, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Constraints
-      value: 112
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: health
@@ -982,12 +1000,52 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1331374402535712075, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331374402535712075, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionId
+      value: 2619574a-abdc-4761-8667-672f047a0e0c
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331374402535712075, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionName
+      value: 'Gameplay/Interact[/Mouse/rightButton]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331374402535712075, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331374402535712075, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331374402535712075, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1037954267}
     - target: {fileID: 1331374402535712075, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1822560736}
+    - target: {fileID: 1331374402535712075, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331374402535712075, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnShoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331374402535712075, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnInteract
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331374402535712075, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerInteraction, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331374402535712075, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2069092283314399613, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
       propertyPath: m_ClearFlags
@@ -1050,8 +1108,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5607912279158709542, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
+      propertyPath: playerInteraction
+      value: 
+      objectReference: {fileID: 1822560736}
+    - target: {fileID: 5607912279158709542, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
       propertyPath: impactLayer.m_Bits
-      value: 64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8836897433645403241, guid: 49b539a070432244eade34e662c1e6c4, type: 3}
       propertyPath: m_Name

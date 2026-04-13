@@ -7,18 +7,17 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] int health; //Vida actual del enemigo
 
     [Header("Feedback Configuration")]
-    [SerializeField] Material damagedMat; //Material feedback al daño
-    [SerializeField] GameObject deathVfx; //Efecto de particulas de muerte
+    [SerializeField] Material damagedMat; //Material feedback de daño
+    [SerializeField] GameObject deathVfx; //Efecto de partículas de muerte
     [SerializeField] MeshRenderer enemyRend; //Ref al componente que dibuja los materiales del enemigo en pantalla
     Material baseMat; //Almacén del material base del enemigo
 
-
     private void Awake()
     {
-        //enemyRend = GetComponent<MeshRenderer>(); 
-        health = maxHealth; //La vida se pone al máximo
-        baseMat = enemyRend.material; //Se referencia al material base
+        health = maxHealth; //La vida se pone en el máximo
+        baseMat = enemyRend.material; //Se referencia el material base
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -27,13 +26,13 @@ public class EnemyHealth : MonoBehaviour
             health = 0; //La vida no puede bajar de cero
             deathVfx.SetActive(true);
             deathVfx.transform.position = transform.position;
-            gameObject.SetActive(false); //El enemigo se apaga = muere
+            gameObject.SetActive(false); //El enemigo se apaga = "muere"
         }
     }
 
     public void TakeDamage(int damage)
     {
-        health -= damage; //Quita una cantidad de vida determinada al enemigo
+        health -= damage; //Quitarle una cantidad determinada de vida al enemigo
         enemyRend.material = damagedMat; //Se cambia al material de feedback de daño
         Invoke(nameof(ResetEnemyMaterial), 0.1f); //Espera de tiempo que permite ver el parpadeo
     }
@@ -41,6 +40,6 @@ public class EnemyHealth : MonoBehaviour
     void ResetEnemyMaterial()
     {
         //Devuelve el material del enemigo a su material original
-        enemyRend.material = baseMat; 
+        enemyRend.material = baseMat;
     }
 }

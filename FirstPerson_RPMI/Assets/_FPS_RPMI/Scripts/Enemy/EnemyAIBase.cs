@@ -1,5 +1,3 @@
-using System.IO;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,42 +6,42 @@ public class EnemyAIBase : MonoBehaviour
     #region General Variables
     [Header("AI Configuration")]
     [SerializeField] NavMeshAgent agent; //Ref al cerebro NavMesh del objeto
-    [SerializeField] Transform target; //Ref a la posicion del jugador para seguirlo
-    [SerializeField] LayerMask targetLayer; //Define la capa del target (Deteccion)
-    [SerializeField] LayerMask groundLayer; //Define capa del suelo (puntos navegables)
-    
-    [Header("Patroling Stats")]
-    [SerializeField] float walkPointRange = 8; //Rango maximo de margen espacial para buscar puntos navegables
-    Vector3 walkPoint; //Posicion del punto a perseguir
-    bool walkPointSet; //Si es falso busca punto, si no no puede buscar punto
+    [SerializeField] Transform target; //Ref a la posición del target a perseguir
+    [SerializeField] LayerMask targetLayer; //Define la capa del target (Detección)
+    [SerializeField] LayerMask groundLayer; //Define la capa del suelo (Definir puntos navegables)
 
-    [Header("Atacking Stats")]
+    [Header("Patroling Stats")]
+    [SerializeField] float walkPointRange = 8f; //Radio máximo de margen espacial para buscar puntos navegables
+    Vector3 walkPoint; //Posición del punto a perseguir
+    bool walkPointSet; //Si es falso, busca punto. Si es verdadero, no puede buscar punto
+
+    [Header("Attacking Stats")]
     [SerializeField] float timeBetweenAttacks = 1f; //Tiempo entre ataque y ataque
     [SerializeField] GameObject projectile; //Ref al prefab del proyectil
-    [SerializeField] Transform shootPoint; //Posicion inicial del disparo
-    [SerializeField] float shootSpeedY; //Potencia del disparo vertical (solo catapulta)
-    [SerializeField] float shootSpeedZ = 10f; //Potencia del disparo hacia delante (siempre está)
+    [SerializeField] Transform shootPoint; //Posición inicial del disparo
+    [SerializeField] float shootSpeedY; //Potencia de disparo vertical (Solo catapulta)
+    [SerializeField] float shootSpeedZ = 10f; //Potencia de disparo hacia delante (Siempre está)
     bool alreadyAttacked; //Se pregunta si estamos atacando para no stackear ataques
 
     [Header("States & Detection Areas")]
-    [SerializeField] float sightRange = 8f; //Radio de la deteccion de persecucion
-    [SerializeField] float attackRange = 2f; //Radio de la deteccion del ataque
-    [SerializeField] bool targetInSightRange; //Determina si entra en estado perseguir
-    [SerializeField] bool targetInAttackRange; //Determina si entra en estado atacar
+    [SerializeField] float sightRange = 8f; //Radio de la detección de persecución
+    [SerializeField] float attackRange = 2f; //Radio de la detección del ataque
+    [SerializeField] bool targetInSightRange; //Determina si entra el estado PERSEGUIR
+    [SerializeField] bool targetInAttackRange; //Determina si entra el estado ATACAR
 
     [Header("Stuck Detection")]
-    [SerializeField] float stuckCheckTime = 2f; //Tiempo que el agente espera quieto hasta preguntarse si está stuck
-    [SerializeField] float stuckThreshold = 0.1f; //Margen de deteccion del stuck
-    [SerializeField] float maxStuckDuration = 3f; //Tiempo maximo de estar stuck
-    float stuckTimer; //Reloj que cuenta cuanto tiempo esta stuck
-    float lastCheckTime; //Define el tiempo de chequeo previo a estar stuck
-    Vector3 lastPosition; //Posicion del ultimo walkpoint perseguido
-    #endregion
+    [SerializeField] float stuckCheckTime = 2f; //Tiempo que el agente espera quieto antes de preguntarse si está stuck
+    [SerializeField] float stuckThreshold = 0.1f; //Margen de detección de stuck
+    [SerializeField] float maxStuckDuration = 3f; //Tiempo máximo de estar stuck
 
+    float stuckTimer; //Reloj que cuenta el tiempo de estar stuck
+    float lastCheckTime; //Tiempo de chequeo previo a estar stuck
+    Vector3 lastPosition; //Posición del último walkpoint perseguido
+    #endregion
 
     private void Awake()
     {
-        targetInAttackRange = GameObject.Find("Player").transform;
+        target = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         lastPosition = transform.position;
         lastCheckTime = Time.time;
@@ -53,31 +51,32 @@ public class EnemyAIBase : MonoBehaviour
     void Update()
     {
         EnemyStateUpdater();
+        CheckIfStuck();
     }
 
     void EnemyStateUpdater()
     {
-        //Accion que se encarga de la gestion de los estados de la IA
-        //Esfera de deteccion fisica
+        //Acción que se encarga de la gestión de los estados de la IA
+        //Esfera de detección física
         Collider[] hits = Physics.OverlapSphere(transform.position, sightRange, targetLayer);
         targetInSightRange = hits.Length > 0;
+        //Si está persiguiendo, calcula la distancia hasta que el mínimo entre dentro del rango de ataque
         if (targetInSightRange)
         {
             float distance = Vector3.Distance(transform.position, target.position);
-            targetInAttackRange = distance <= attackRange; 
-            //Si esta persiguiendo, calcula la distancia hasta que el minimo entree en el rango de ataque
+            targetInAttackRange = distance <= attackRange;
         }
 
-        //Logica de los cambios de estado
-        if (!targetInSightRange && !targetInAttackRange) Patroling(); 
+        //Lógica de los cambios de estado
+        if (!targetInSightRange && !targetInAttackRange) Patroling();
         else if (targetInSightRange && !targetInAttackRange) ChaseTarget();
         else if (targetInSightRange && targetInAttackRange) AttackTarget();
-}
+    }
 
     void Patroling()
     {
         //Define que el objeto patrulle y genere puntos de patrulla random
-        //1 - Revisa si hay un punto a patrullar
+        //1 - Revisa si hay punto a patrullar
         if (!walkPointSet)
         {
             //Si no hay walkpoint, busca uno
@@ -85,30 +84,31 @@ public class EnemyAIBase : MonoBehaviour
         }
         else agent.SetDestination(walkPoint); //Si hay punto, lo persigue
 
-        //2  -Una vez ha llegado al punto, 
+        //2 - Una vez ha llegado al punto, hay que decirle al sistema que puede generar uno nuevo
         if ((transform.position - walkPoint).sqrMagnitude < 1f)
-            {
-                walkPointSet = false;
-            }
+        {
+            walkPointSet = false;
+        }
     }
-    
+
     void SearchWalkPoint()
     {
-        //Accion que busca un punto de patrulla random si no lo hay
-        int attempts = 0; //Numero de intentos de encontrar un punto nuevo
-        const int maxAttempts = 5; 
+        //Acción que busca un punto de patrulla random si no lo hay
+        int attempts = 0; //Número interno de intentos de buscar punto nuevo
+        const int maxAttempts = 5;
 
         while (!walkPointSet && attempts < maxAttempts)
         {
             attempts++;
             Vector3 randomPoint = transform.position + new Vector3(Random.Range(-walkPointRange, walkPointRange), 0, Random.Range(-walkPointRange, walkPointRange));
-            //
+
+            //Chequear si el punto está en un lugar en el que haya NavMesh Surface
             if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 2f, NavMesh.AllAreas))
             {
-                walkPoint =  hit.position; //Determina el Vector3 a perseguir
+                walkPoint = hit.position; //Determina el Vector3 random a perseguir
                 if (Physics.Raycast(walkPoint, -transform.up, 2f, groundLayer))
                 {
-                    walkPointSet = true; //Tenemos punto y el agarre va hacia el
+                    walkPointSet = true; //Tenemos punto y el agente va hacia él
                 }
             }
         }
@@ -119,25 +119,25 @@ public class EnemyAIBase : MonoBehaviour
         //Le dice al agente que persiga al target
         agent.SetDestination(target.position);
     }
-    
+
     void AttackTarget()
     {
-        //Accion que determina el ataque al objetivo
+        //Acción que determina el ataque al objetivo
 
-        //1 - Detener el movimiento
+        //1- Detener el movimiento
         agent.SetDestination(transform.position);
 
-        //2 - Rotacion suavizada para mirar al target
+        //2- Rotación suavizada para mirar al target
         Vector3 direction = (target.position - transform.position).normalized;
-        //Condicional que revisa si agente y targeyt NO se estan mirando
-        if (direction!= Vector3.zero)
+        //Condicional que revisa si agente y target NO se están mirando
+        if (direction != Vector3.zero)
         {
             Quaternion lookRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, agent.angularSpeed * Time.deltaTime);
         }
 
-        //
-        //
+        //3- Definir el ataque en sí
+        //Solo atacará si no se está atacando
         if (!alreadyAttacked)
         {
             Rigidbody rb = Instantiate(projectile, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
@@ -149,30 +149,31 @@ public class EnemyAIBase : MonoBehaviour
 
     void ResetAttack()
     {
-        //Accion que resetea el ataque
+        //Acción que resetea el ataque
         alreadyAttacked = false;
     }
 
     void CheckIfStuck()
     {
-        //Accion que revisa si el agente está atrapado
-        if(Time.time - lastCheckTime > stuckCheckTime)
+        //Acción que revisa si el agente está atrapado
+        if (Time.time - lastCheckTime > stuckCheckTime)
         {
-            float distanceMoved = Vector3.Distance(transform.position, lastPosition); 
+            float distanceMoved = Vector3.Distance(transform.position, lastPosition);
 
             if (distanceMoved < stuckThreshold && agent.hasPath)
             {
                 stuckTimer += stuckCheckTime;
             }
-            else             {
-                stuckTimer = 0f; 
+            else
+            {
+                stuckTimer = 0;
             }
 
             if (stuckTimer >= maxStuckDuration)
             {
                 walkPointSet = false;
                 agent.ResetPath();
-                stuckTimer = 0f;
+                stuckTimer = 0;
             }
 
             lastPosition = transform.position;
@@ -180,10 +181,9 @@ public class EnemyAIBase : MonoBehaviour
         }
     }
 
-
     private void OnDrawGizmosSelected()
     {
-        if (Application.isPlaying) return; //Solo se ejecutan los gizmos en el editor
+        if (Application.isPlaying) return; //Solo se ejecutan los gizmos en editor de Unity
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);

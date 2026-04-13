@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8715184009441056255}
   - component: {fileID: 1589916095965535556}
   - component: {fileID: 3963709861712396349}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: EnemyBody
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
   maxHealth: 100
   health: 0
-  damagedMat: {fileID: 2100000, guid: 4ad6ca37a5285264cbc557db66ecd45c, type: 2}
+  damagedMat: {fileID: 2100000, guid: 0d968ce83a78d7c4abe5f9fab3a03528, type: 2}
   deathVfx: {fileID: 2149157638012856216}
   enemyRend: {fileID: 9038480648699461996}
 --- !u!195 &1589916095965535556
@@ -141,13 +141,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAIBase
   agent: {fileID: 0}
-  player: {fileID: 0}
-  tergetLayer:
+  target: {fileID: 0}
+  targetLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   walkPointRange: 8
   timeBetweenAttacks: 1
   projectile: {fileID: 2660997778107864922, guid: ca272a8280ded004fa55d75a5e1b196d, type: 3}
@@ -159,7 +159,7 @@ MonoBehaviour:
   targetInSightRange: 0
   targetInAttackRange: 0
   stuckCheckTime: 2
-  stuckTreshold: 0.1
+  stuckThreshold: 0.1
   maxStuckDuration: 3
 --- !u!1 &2847207725397122467
 GameObject:
