@@ -1,12 +1,12 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CajaFuerte : Interactable
 {
-    public int points = 50;
+    public string victorySceneName = "Victory";
 
     public override void Interact()
     {
-        GameManager.instance.AddPoints(points);
-        GameManager.instance.EndGame();
+        SceneManager.LoadScene(victorySceneName);
     }
 }
