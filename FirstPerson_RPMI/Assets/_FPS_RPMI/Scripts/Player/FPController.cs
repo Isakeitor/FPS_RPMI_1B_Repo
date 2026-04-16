@@ -31,6 +31,8 @@ public class FPController : MonoBehaviour
     //Variables de input
     Vector2 moveInput;
     Vector2 lookInput;
+    public bool canLook = true;
+    public bool canMove = true;
     float lookRotation;
 
     private void Awake()
@@ -68,6 +70,7 @@ public class FPController : MonoBehaviour
 
     void CameraLook()
     {
+        if (!canLook) return;
         //Rotacion del personaje (horizontal)
         transform.Rotate(Vector3.up * lookInput.x * sensitivity);
         //Rotacion de camara vertical
@@ -78,6 +81,7 @@ public class FPController : MonoBehaviour
 
     void Movement()
     {
+        if (!canMove) return;
         //Definit los dos vectores que permiten aceleracion
         Vector3 currenntVelocoty = rb.linearVelocity; 
         Vector3 targetVelocity = new Vector3(moveInput.x, 0f, moveInput.y) * speed;
