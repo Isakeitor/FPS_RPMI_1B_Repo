@@ -5,18 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/VFX_SimpleExplosions/Scenes/SCN_PruebasParticle.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/_FPS_RPMI/Scenes/SCN_Main Menu.unity
     guid: dd30a02b63ddd9941a0f0f82575356a8
-  - enabled: 1
-    path: Assets/_FPS_RPMI/Scenes/SCN_Controls.unity
-    guid: 6e02f7c7104cb2d49a0d840cbe5ba4f3
-  - enabled: 1
-    path: Assets/_FPS_RPMI/Scenes/SCN_Options.unity
-    guid: 778aef0496900a8478d9f8ecfd777cd0
   - enabled: 1
     path: Assets/_FPS_RPMI/Scenes/SCN_House Easy.unity
     guid: 011f9cff0eefbf34581b5811afb01fc7

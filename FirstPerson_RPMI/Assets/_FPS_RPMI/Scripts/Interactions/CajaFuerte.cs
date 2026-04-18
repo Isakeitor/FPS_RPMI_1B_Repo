@@ -44,6 +44,8 @@ public class CajaFuerte : Interactable
     {
         codePanel.SetActive(false);
 
+        Time.timeScale = 1f;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
