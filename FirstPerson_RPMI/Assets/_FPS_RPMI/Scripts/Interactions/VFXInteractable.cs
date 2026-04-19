@@ -1,16 +1,22 @@
 using UnityEngine;
 
-public class VFXInteractable : MonoBehaviour
+public class FBXInteractable : Interactable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public GameObject targetObject;
+    bool isActive = true;
+
     void Start()
     {
-        
+        interactionText = "Turn Off";
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Interact()
     {
-        
+        base.Interact();
+
+        isActive = !isActive;
+        targetObject.SetActive(isActive);
+
+        SetInteractionText(isActive ? "Turn Off" : "Turn On");
     }
 }

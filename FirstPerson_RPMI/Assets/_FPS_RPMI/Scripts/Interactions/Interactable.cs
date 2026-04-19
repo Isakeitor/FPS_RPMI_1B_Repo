@@ -5,31 +5,52 @@ public class Interactable : MonoBehaviour
     [Header("Interaction")]
     [TextArea]
     public string interactionText = "Interact";
-
-    [Header("Settings")]
     public bool canInteract = true;
 
-    // 👉 Método principal que todos los hijos sobrescriben
+    [Header("Outline")]
+    public GameObject outlineObject; // objeto con outline (hijo)
+
+    [Header("Audio")]
+    public AudioClip interactSound;
+    AudioSource audioSource;
+
+    bool isFocused = false;
+
+    void Start()
+    {
+        if (outlineObject != null)
+            outlineObject.SetActive(false);
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+    }
+
     public virtual void Interact()
     {
         if (!canInteract) return;
 
-        Debug.Log("Interactuado con: " + gameObject.name);
+        if (interactSound != null)
+            audioSource.PlayOneShot(interactSound);
     }
 
-    // 👉 Opcional: cuando el jugador mira el objeto
     public virtual void OnFocus()
     {
-        // Aquí puedes añadir highlight, outline, etc.
+        if (isFocused) return;
+        isFocused = true;
+
+        if (outlineObject != null)
+            outlineObject.SetActive(true);
     }
 
-    // 👉 Opcional: cuando deja de mirar el objeto
     public virtual void OnLoseFocus()
     {
-        // Quitar highlight, etc.
+        if (!isFocused) return;
+        isFocused = false;
+
+        if (outlineObject != null)
+            outlineObject.SetActive(false);
     }
 
-    // 👉 Cambiar texto dinámicamente (útil para puertas, luces, etc.)
     public void SetInteractionText(string newText)
     {
         interactionText = newText;

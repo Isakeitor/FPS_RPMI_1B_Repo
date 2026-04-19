@@ -9,13 +9,19 @@ public class CajaFuerte : Interactable
     public string victorySceneName = "Victory";
     public string correctCode = "1234";
 
-    [Header("UI")]
     public GameObject codePanel;
     public InputField codeInput;
 
+    void Start()
+    {
+        interactionText = "Open Safe";
+    }
+
     public override void Interact()
     {
-        Time.timeScale = 0f; // pausa el juego
+        base.Interact();
+
+        Time.timeScale = 0f;
         codePanel.SetActive(true);
 
         Cursor.lockState = CursorLockMode.None;
@@ -36,15 +42,13 @@ public class CajaFuerte : Interactable
         }
         else
         {
-            Debug.Log("Código incorrecto");
             codeInput.text = "";
         }
     }
+
     public void ClosePanel()
     {
         codePanel.SetActive(false);
-
-        Time.timeScale = 1f;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -52,6 +56,7 @@ public class CajaFuerte : Interactable
         playerController.canMove = true;
         playerController.canLook = true;
     }
+
     void Update()
     {
         if (codePanel.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame)
