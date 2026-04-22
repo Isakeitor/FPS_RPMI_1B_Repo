@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
-public class CajaFuerte : Interactable
+public class WallCode : Interactable
 {
     public FPController playerController;
     public string correctCode = "1234";
@@ -11,17 +11,29 @@ public class CajaFuerte : Interactable
     [Header("UI")]
     public GameObject codePanel;
     public InputField codeInput;
-    public GameObject victoryPanel; // 🔥 NUEVO
+
+    [Header("Animation")]
+    public Animator targetAnimator;
+    public string animationTrigger = "Open";
+
+    bool activated = false;
 
     void Start()
     {
-        interactionText = "Open Safe";
+        interactionText = "Enter Code";
     }
 
     public override void Interact()
     {
         base.Interact();
 
+        if (activated) return;
+
+        OpenPanel();
+    }
+
+    void OpenPanel()
+    {
         Time.timeScale = 0f;
         codePanel.SetActive(true);
 
@@ -30,28 +42,32 @@ public class CajaFuerte : Interactable
 
         playerController.canMove = false;
         playerController.canLook = false;
-    }
 
+        EventSystem.current.SetSelectedGameObject(codeInput.gameObject);
+        codeInput.ActivateInputField();
+    }
     public void CheckCode()
     {
         if (codeInput.text == correctCode)
         {
-            codePanel.SetActive(false);
-
-            victoryPanel.SetActive(true);
-
-            Time.timeScale = 0f;
-
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-
-            playerController.canMove = false;
-            playerController.canLook = false;
+            ActivateWall();
         }
         else
         {
             codeInput.text = "";
         }
+    }
+
+    void ActivateWall()
+    {
+        activated = true;
+
+        if (targetAnimator != null)
+        {
+            targetAnimator.SetTrigger(animationTrigger);
+        }
+
+        ClosePanel();
     }
 
     public void ClosePanel()

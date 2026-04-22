@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GunSystem : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class GunSystem : MonoBehaviour
     [SerializeField] int ammoSize = 30;
     [SerializeField] int bulletsPerTap = 1;
     [SerializeField] int bulletsLeft;
+
+    [Header("Ammo UI")]
+    public GameObject ammoIcon;
+    public GameObject noAmmoIcon;
 
     [Header("Dev - Gun State Bools")]
     [SerializeField] bool shooting;
@@ -47,6 +52,8 @@ public class GunSystem : MonoBehaviour
     {
         targetFOV = normalFOV;
         fpsCam.fieldOfView = normalFOV;
+
+        UpdateAmmoUI();
     }
 
     void Update()
@@ -56,12 +63,15 @@ public class GunSystem : MonoBehaviour
             StartCoroutine(ShootRoutine());
         }
 
-        // 🔥 Zoom suave SIEMPRE
+        // 🔥 Zoom
         fpsCam.fieldOfView = Mathf.Lerp(
             fpsCam.fieldOfView,
             targetFOV,
             Time.deltaTime * zoomSpeed
         );
+
+        // 🔥 actualizar UI siempre
+        UpdateAmmoUI();
     }
 
     #region SHOOTING
@@ -94,12 +104,11 @@ public class GunSystem : MonoBehaviour
 
         if (Physics.Raycast(fpsCam.transform.position, direction, out hit, range, impactLayer))
         {
-            Debug.Log(hit.collider.name);
-
             if (hit.collider.CompareTag("Enemy"))
             {
                 EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
-                enemyHealth.TakeDamage(damage);
+                if (enemyHealth != null)
+                    enemyHealth.TakeDamage(damage);
             }
         }
     }
@@ -124,6 +133,26 @@ public class GunSystem : MonoBehaviour
         {
             StartCoroutine(ReloadRoutine());
         }
+    }
+
+    // 🔥 LLAMADO DESDE PICKUP
+    public void AddAmmo(int amount)
+    {
+        bulletsLeft += amount;
+        bulletsLeft = Mathf.Clamp(bulletsLeft, 0, ammoSize);
+    }
+
+    #endregion
+
+    #region UI
+
+    void UpdateAmmoUI()
+    {
+        if (ammoIcon != null)
+            ammoIcon.SetActive(bulletsLeft > 0);
+
+        if (noAmmoIcon != null)
+            noAmmoIcon.SetActive(bulletsLeft <= 0);
     }
 
     #endregion
@@ -153,9 +182,7 @@ public class GunSystem : MonoBehaviour
     {
         float scroll = context.ReadValue<Vector2>().y;
 
-        // 🔥 Zoom más suave y controlado
         targetFOV -= scroll * 2f;
-
         targetFOV = Mathf.Clamp(targetFOV, zoomFOV, normalFOV);
     }
 
