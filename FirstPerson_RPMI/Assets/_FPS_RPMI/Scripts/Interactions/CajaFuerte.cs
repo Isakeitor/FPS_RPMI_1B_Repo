@@ -11,7 +11,7 @@ public class CajaFuerte : Interactable
     [Header("UI")]
     public GameObject codePanel;
     public InputField codeInput;
-    public GameObject victoryPanel; // 🔥 NUEVO
+    public GameObject victoryPanel; 
 
     void Start()
     {

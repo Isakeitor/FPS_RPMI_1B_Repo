@@ -6,7 +6,7 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
-    int currentHealth;
+    public int currentHealth;
 
     [Header("UI")]
     public GameObject gameOverPanel;
@@ -51,14 +51,12 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    // 🔥 NUEVO → curar al máximo
     public void HealFull()
     {
         currentHealth = maxHealth;
         UpdateHealthUI();
     }
 
-    // 🔥 OPCIONAL → curar parcialmente
     public void Heal(int amount)
     {
         currentHealth += amount;

@@ -11,7 +11,6 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // 🔥 SOLO daña al player
         if (collision.collider.CompareTag("Player"))
         {
             PlayerHealth player = collision.collider.GetComponent<PlayerHealth>();
