@@ -7,26 +7,41 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public int score = 0;
-
     public TextMeshProUGUI scoreText;
 
     void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    void Start()
+    {
+        UpdateUI();
     }
 
     public void AddPoints(int amount)
     {
         score += amount;
-        scoreText.text = "Score: " + score;
+        UpdateUI();
+    }
+
+    void UpdateUI()
+    {
+        if (scoreText != null)
+            scoreText.text = score.ToString();
     }
 
     public void EndGame()
     {
-        // 🔥 GUARDAR SCORE ACTUAL
         PlayerPrefs.SetInt("LastScore", score);
 
-        // 🔥 COMPROBAR HIGH SCORE
         int bestScore = PlayerPrefs.GetInt("BestScore", 0);
 
         if (score > bestScore)
@@ -34,12 +49,10 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("BestScore", score);
         }
 
-        // 🔥 IR A ESCENA DE GAME OVER / SCORE
-        SceneManager.LoadScene("ScoreScene");
-    }
+        PlayerPrefs.Save();
 
-    void Start()
-    {
-        scoreText.text = "Score: 0";
+        Time.timeScale = 1f;
+
+        SceneManager.LoadScene("Score");
     }
 }
