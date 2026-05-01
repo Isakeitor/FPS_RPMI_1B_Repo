@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/_FPS_RPMI/Scenes/SCN_House Easy.unity
     guid: 011f9cff0eefbf34581b5811afb01fc7
   - enabled: 1
+    path: Assets/_FPS_RPMI/Scenes/SCN_House Hard.unity
+    guid: 11e60db467c57ff43ac3e86359c5a5dd
+  - enabled: 1
     path: Assets/_FPS_RPMI/Scenes/SCN_Score.unity
     guid: fc10365f0f4e5c74ab7012022839d9c3
   m_configObjects:

@@ -12,6 +12,10 @@ public class GunSystem : MonoBehaviour
     [SerializeField] LayerMask impactLayer;
     RaycastHit hit;
 
+    [Header("VFX")]
+    [SerializeField] GameObject muzzleVFX; // 🔥 disparo
+    [SerializeField] GameObject hitVFX;    // 🔥 impacto
+
     [Header("Weapon Parameters")]
     [SerializeField] int damage = 10;
     [SerializeField] float range = 100f;
@@ -63,14 +67,12 @@ public class GunSystem : MonoBehaviour
             StartCoroutine(ShootRoutine());
         }
 
-        // 🔥 Zoom
         fpsCam.fieldOfView = Mathf.Lerp(
             fpsCam.fieldOfView,
             targetFOV,
             Time.deltaTime * zoomSpeed
         );
 
-        // 🔥 actualizar UI siempre
         UpdateAmmoUI();
     }
 
@@ -97,13 +99,26 @@ public class GunSystem : MonoBehaviour
 
     void Shoot()
     {
-        Vector3 direction = fpsCam.transform.forward;
+        // 🔥 MUZZLE FLASH
+        if (muzzleVFX != null && shootPoint != null)
+        {
+            GameObject vfx = Instantiate(muzzleVFX, shootPoint.position, shootPoint.rotation);
+            Destroy(vfx, 1f);
+        }
 
+        Vector3 direction = fpsCam.transform.forward;
         direction.x += Random.Range(-spread, spread);
         direction.y += Random.Range(-spread, spread);
 
         if (Physics.Raycast(fpsCam.transform.position, direction, out hit, range, impactLayer))
         {
+            // 🔥 IMPACT VFX
+            if (hitVFX != null)
+            {
+                GameObject impact = Instantiate(hitVFX, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(impact, 2f);
+            }
+
             if (hit.collider.CompareTag("Enemy"))
             {
                 EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
@@ -135,7 +150,6 @@ public class GunSystem : MonoBehaviour
         }
     }
 
-    // 🔥 LLAMADO DESDE PICKUP
     public void AddAmmo(int amount)
     {
         bulletsLeft += amount;

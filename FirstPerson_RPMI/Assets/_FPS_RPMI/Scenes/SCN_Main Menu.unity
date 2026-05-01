@@ -420,12 +420,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla,
-    bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla,
-    bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla,
-    bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla,
-    bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla,
-    bla, bla, bla, bla, bla, bla, bla, '
+  m_text: "Eres un ladr\xF3n profesional, pero el due\xF1o de la casa ha escondido
+    la caja fuerte y ha instalado drones de defensa. \n\nEncuentra la contrase\xF1a
+    secreta e introd\xFAcela para conseguir el bot\xEDn.\n\nEst\xE1s armado con una
+    pistola para defenderte.\n\xA1Mucha suerte!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

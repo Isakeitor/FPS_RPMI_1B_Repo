@@ -143,8 +143,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77583f6c1f7f8694089f19de6c09f73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Diamond
+  interactionText: Interact
+  canInteract: 1
+  outlineObject: {fileID: 0}
+  interactSound: {fileID: 0}
   points: 10
-  particles: {fileID: 0}
+  particles: {fileID: 5273896927085173203, guid: fdf0332a6bd00cb469027a2f6edcd1de, type: 3}
 --- !u!114 &8184755145353033320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,3 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d6206358bf71d4291bf398bd56bc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  interactionText: Interact
+  canInteract: 1
+  outlineObject: {fileID: 0}
+  interactSound: {fileID: 0}
