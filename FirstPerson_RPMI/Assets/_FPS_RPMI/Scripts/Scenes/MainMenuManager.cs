@@ -14,6 +14,7 @@ public class MainMenuManager : MonoBehaviour
     public string easyScene = "EasyScene";
     public string hardScene = "HardScene";
     public string bestScoreScene = "ScoreScene";
+    public string survivalScene = "Survival";
 
     [Header("Audio")]
     public Image volumeImage;
@@ -30,9 +31,10 @@ public class MainMenuManager : MonoBehaviour
     // 🎮 PLAY
     public void PlayEasy() => SceneManager.LoadScene(easyScene);
     public void PlayHard() => SceneManager.LoadScene(hardScene);
+    public void PlaySurvival() => SceneManager.LoadScene(survivalScene);
     public void OpenBestScore() => SceneManager.LoadScene(bestScoreScene);
 
-    // ⚙️ OPTIONS
+    // ⚙ OPTIONS
     public void OpenOptions()
     {
         HideAllPanels();

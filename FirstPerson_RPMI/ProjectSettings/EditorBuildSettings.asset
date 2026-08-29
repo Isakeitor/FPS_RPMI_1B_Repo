@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_FPS_RPMI/Scenes/SCN_House Hard.unity
     guid: 11e60db467c57ff43ac3e86359c5a5dd
-  - enabled: 1
+  - enabled: 0
     path: Assets/_FPS_RPMI/Scenes/SCN_Score.unity
     guid: fc10365f0f4e5c74ab7012022839d9c3
+  - enabled: 1
+    path: Assets/_FPS_RPMI/Scenes/SCN_Survival.unity
+    guid: 1b5f30e9d442a81448eb7bc211ce261d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

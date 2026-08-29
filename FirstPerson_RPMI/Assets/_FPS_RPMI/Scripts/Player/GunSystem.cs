@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public class GunSystem : MonoBehaviour
 {
@@ -13,8 +14,8 @@ public class GunSystem : MonoBehaviour
     RaycastHit hit;
 
     [Header("VFX")]
-    [SerializeField] GameObject muzzleVFX; // 🔥 disparo
-    [SerializeField] GameObject hitVFX;    // 🔥 impacto
+    [SerializeField] GameObject muzzleVFX;
+    [SerializeField] GameObject hitVFX;
 
     [Header("Weapon Parameters")]
     [SerializeField] int damage = 10;
@@ -32,6 +33,7 @@ public class GunSystem : MonoBehaviour
     [Header("Ammo UI")]
     public GameObject ammoIcon;
     public GameObject noAmmoIcon;
+    public TextMeshProUGUI ammoText;
 
     [Header("Dev - Gun State Bools")]
     [SerializeField] bool shooting;
@@ -102,26 +104,44 @@ public class GunSystem : MonoBehaviour
         // 🔥 MUZZLE FLASH
         if (muzzleVFX != null && shootPoint != null)
         {
-            GameObject vfx = Instantiate(muzzleVFX, shootPoint.position, shootPoint.rotation);
+            GameObject vfx = Instantiate(
+                muzzleVFX,
+                shootPoint.position,
+                shootPoint.rotation
+            );
+
             Destroy(vfx, 1f);
         }
 
         Vector3 direction = fpsCam.transform.forward;
+
         direction.x += Random.Range(-spread, spread);
         direction.y += Random.Range(-spread, spread);
 
-        if (Physics.Raycast(fpsCam.transform.position, direction, out hit, range, impactLayer))
+        if (Physics.Raycast(
+            fpsCam.transform.position,
+            direction,
+            out hit,
+            range,
+            impactLayer))
         {
             // 🔥 IMPACT VFX
             if (hitVFX != null)
             {
-                GameObject impact = Instantiate(hitVFX, hit.point, Quaternion.LookRotation(hit.normal));
+                GameObject impact = Instantiate(
+                    hitVFX,
+                    hit.point,
+                    Quaternion.LookRotation(hit.normal)
+                );
+
                 Destroy(impact, 2f);
             }
 
             if (hit.collider.CompareTag("Enemy"))
             {
-                EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
+                EnemyHealth enemyHealth =
+                    hit.collider.GetComponent<EnemyHealth>();
+
                 if (enemyHealth != null)
                     enemyHealth.TakeDamage(damage);
             }
@@ -162,6 +182,9 @@ public class GunSystem : MonoBehaviour
 
     void UpdateAmmoUI()
     {
+        if (ammoText != null)
+            ammoText.text = bulletsLeft.ToString();
+
         if (ammoIcon != null)
             ammoIcon.SetActive(bulletsLeft > 0);
 
@@ -197,7 +220,11 @@ public class GunSystem : MonoBehaviour
         float scroll = context.ReadValue<Vector2>().y;
 
         targetFOV -= scroll * 2f;
-        targetFOV = Mathf.Clamp(targetFOV, zoomFOV, normalFOV);
+        targetFOV = Mathf.Clamp(
+            targetFOV,
+            zoomFOV,
+            normalFOV
+        );
     }
 
     #endregion
