@@ -7,6 +7,10 @@ public class DragObject : Interactable
     [SerializeField] private float dragDistance = 2f;
     [SerializeField] private float rotationSpeed = 10f;
 
+    [Header("Ground Detection")]
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float groundOffset = 0.05f;
+
     [Header("Break System")]
     [SerializeField] private int hitsToBreak = 3;
 
@@ -35,19 +39,38 @@ public class DragObject : Interactable
         if (!isDragging || player == null)
             return;
 
-        // Mantener el objeto delante del jugador
+        // Posición delante del jugador, incluyendo altura
         Vector3 targetPosition =
             player.position + player.forward * dragDistance;
 
-        targetPosition.y = transform.position.y;
+        // Detectar el suelo debajo del objeto
+        Ray ray = new Ray(
+            targetPosition + Vector3.up * 5f,
+            Vector3.down
+        );
 
+        if (Physics.Raycast(
+            ray,
+            out RaycastHit hit,
+            10f,
+            groundLayer
+        ))
+        {
+            // Mantener el objeto por encima del suelo
+            float objectHeight = GetComponent<Collider>().bounds.extents.y;
+
+            targetPosition.y =
+                hit.point.y + objectHeight + groundOffset;
+        }
+
+        // Movimiento
         transform.position = Vector3.Lerp(
             transform.position,
             targetPosition,
             Time.deltaTime * dragSpeed
         );
 
-        // Girar el objeto con el jugador
+        // Rotación con el jugador
         Quaternion targetRotation = Quaternion.Euler(
             0f,
             player.eulerAngles.y,
