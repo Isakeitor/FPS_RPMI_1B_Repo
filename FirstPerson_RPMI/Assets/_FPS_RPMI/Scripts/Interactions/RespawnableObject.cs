@@ -2,18 +2,27 @@ using UnityEngine;
 
 public class RespawnableObject : MonoBehaviour
 {
-    RespawnManager respawnManager;
+    [Header("Respawn")]
+    [SerializeField] private float respawnTime = 5f;
 
-    public void SetRespawnManager(RespawnManager manager)
-    {
-        respawnManager = manager;
-    }
+    private Vector3 originalPosition;
+    private Quaternion originalRotation;
+    private Vector3 originalScale;
 
-    void OnDestroy()
+    public float RespawnTime => respawnTime;
+    public Vector3 OriginalPosition => originalPosition;
+    public Quaternion OriginalRotation => originalRotation;
+    public Vector3 OriginalScale => originalScale;
+
+    private void Awake()
     {
-        if (respawnManager != null)
+        originalPosition = transform.position;
+        originalRotation = transform.rotation;
+        originalScale = transform.localScale;
+
+        if (RespawnManager.Instance != null)
         {
-            respawnManager.ObjectDestroyed();
+            RespawnManager.Instance.RegisterObject(this);
         }
     }
 }

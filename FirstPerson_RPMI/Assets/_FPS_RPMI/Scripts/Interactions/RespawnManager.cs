@@ -1,78 +1,94 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RespawnManager : MonoBehaviour
 {
-    [Header("Object To Respawn")]
-    [SerializeField] GameObject objectPrefab;
+    public static RespawnManager Instance;
 
-    [Header("Respawn Settings")]
-    [SerializeField] float respawnTime = 5f;
-    [SerializeField] bool respawnAutomatically = true;
+    private Dictionary<RespawnableObject, Coroutine> respawningObjects =
+        new Dictionary<RespawnableObject, Coroutine>();
 
-    [Header("Spawn Position")]
-    [SerializeField] Transform spawnPoint;
-
-    GameObject currentObject;
-
-    void Start()
+    private void Awake()
     {
-        if (respawnAutomatically)
+        if (Instance != null && Instance != this)
         {
-            SpawnObject();
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
+
+    public void RegisterObject(RespawnableObject obj)
+    {
+        if (!respawningObjects.ContainsKey(obj))
+        {
+            respawningObjects.Add(obj, null);
         }
     }
 
-    public void SpawnObject()
+    public void Respawn(GameObject objectToRespawn)
     {
-        if (currentObject != null)
-            return;
+        RespawnableObject respawnable =
+            objectToRespawn.GetComponent<RespawnableObject>();
 
-        if (objectPrefab == null)
+        if (respawnable == null)
         {
-            Debug.LogWarning("RespawnManager: No hay un prefab asignado.");
+            Debug.LogWarning(
+                "El objeto " + objectToRespawn.name +
+                " no tiene RespawnableObject."
+            );
+
             return;
         }
 
-        Vector3 spawnPosition;
-        Quaternion spawnRotation;
+        Respawn(respawnable);
+    }
 
-        if (spawnPoint != null)
+    public void Respawn(RespawnableObject respawnable)
+    {
+        if (respawningObjects.ContainsKey(respawnable) &&
+            respawningObjects[respawnable] != null)
         {
-            spawnPosition = spawnPoint.position;
-            spawnRotation = spawnPoint.rotation;
+            return;
+        }
+
+        Coroutine coroutine = StartCoroutine(
+            RespawnRoutine(respawnable)
+        );
+
+        if (respawningObjects.ContainsKey(respawnable))
+        {
+            respawningObjects[respawnable] = coroutine;
         }
         else
         {
-            spawnPosition = transform.position;
-            spawnRotation = transform.rotation;
-        }
-
-        currentObject = Instantiate(
-            objectPrefab,
-            spawnPosition,
-            spawnRotation
-        );
-
-        RespawnableObject respawnable =
-            currentObject.GetComponent<RespawnableObject>();
-
-        if (respawnable != null)
-        {
-            respawnable.SetRespawnManager(this);
+            respawningObjects.Add(respawnable, coroutine);
         }
     }
 
-    public void ObjectDestroyed()
+    private IEnumerator RespawnRoutine(RespawnableObject respawnable)
     {
-        currentObject = null;
-        StartCoroutine(RespawnRoutine());
-    }
+        float respawnTime = respawnable.RespawnTime;
 
-    IEnumerator RespawnRoutine()
-    {
+        GameObject obj = respawnable.gameObject;
+
+        obj.SetActive(false);
+
         yield return new WaitForSeconds(respawnTime);
 
-        SpawnObject();
+        if (respawnable == null)
+        {
+            yield break;
+        }
+
+        obj.transform.position = respawnable.OriginalPosition;
+        obj.transform.rotation = respawnable.OriginalRotation;
+        obj.transform.localScale = respawnable.OriginalScale;
+
+        obj.SetActive(true);
+
+        respawningObjects[respawnable] = null;
     }
 }
