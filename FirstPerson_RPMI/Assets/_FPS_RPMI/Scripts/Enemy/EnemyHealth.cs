@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -23,15 +24,29 @@ public class EnemyHealth : MonoBehaviour
 
     private bool respawning = false;
 
+    private EnemyAIBase enemyAI;
+    private NavMeshAgent agent;
+    private Collider[] colliders;
+    private Renderer[] renderers;
+
     private void Awake()
     {
         health = maxHealth;
 
-        baseMat = enemyRend.material;
+        if (enemyRend != null)
+        {
+            baseMat = enemyRend.material;
+        }
 
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         originalScale = transform.localScale;
+
+        enemyAI = GetComponent<EnemyAIBase>();
+        agent = GetComponent<NavMeshAgent>();
+
+        colliders = GetComponentsInChildren<Collider>();
+        renderers = GetComponentsInChildren<Renderer>();
     }
 
     private void Update()
@@ -49,9 +64,13 @@ public class EnemyHealth : MonoBehaviour
 
         health -= damage;
 
-        enemyRend.material = damagedMat;
+        if (enemyRend != null && damagedMat != null)
+        {
+            enemyRend.material = damagedMat;
 
-        Invoke(nameof(ResetEnemyMaterial), 0.1f);
+            CancelInvoke(nameof(ResetEnemyMaterial));
+            Invoke(nameof(ResetEnemyMaterial), 0.1f);
+        }
     }
 
     private void Die()
@@ -59,13 +78,37 @@ public class EnemyHealth : MonoBehaviour
         health = 0;
         respawning = true;
 
+        // Detener la IA inmediatamente
+        if (enemyAI != null)
+        {
+            enemyAI.SetDead(true);
+        }
+
+        // Detener el NavMeshAgent
+        if (agent != null && agent.enabled)
+        {
+            agent.ResetPath();
+            agent.isStopped = true;
+        }
+
+        // VFX de muerte
         if (deathVfx != null)
         {
             deathVfx.SetActive(true);
             deathVfx.transform.position = transform.position;
         }
 
-        gameObject.SetActive(false);
+        // Desactivar colliders
+        foreach (Collider col in colliders)
+        {
+            col.enabled = false;
+        }
+
+        // Ocultar modelo
+        foreach (Renderer rend in renderers)
+        {
+            rend.enabled = false;
+        }
 
         StartCoroutine(RespawnRoutine());
     }
@@ -74,30 +117,57 @@ public class EnemyHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(respawnTime);
 
+        // Volver a posición original
         transform.position = originalPosition;
         transform.rotation = originalRotation;
         transform.localScale = originalScale;
 
+        // Recuperar vida
         health = maxHealth;
 
-        if (enemyRend != null)
+        // Restaurar material
+        if (enemyRend != null && baseMat != null)
         {
             enemyRend.material = baseMat;
         }
 
+        // Ocultar VFX
         if (deathVfx != null)
         {
             deathVfx.SetActive(false);
         }
 
-        gameObject.SetActive(true);
+        // Reactivar colliders
+        foreach (Collider col in colliders)
+        {
+            col.enabled = true;
+        }
+
+        // Mostrar modelo
+        foreach (Renderer rend in renderers)
+        {
+            rend.enabled = true;
+        }
+
+        // Reactivar NavMeshAgent
+        if (agent != null)
+        {
+            agent.Warp(transform.position);
+            agent.isStopped = false;
+        }
+
+        // Reactivar IA
+        if (enemyAI != null)
+        {
+            enemyAI.SetDead(false);
+        }
 
         respawning = false;
     }
 
     private void ResetEnemyMaterial()
     {
-        if (enemyRend != null)
+        if (enemyRend != null && !respawning)
         {
             enemyRend.material = baseMat;
         }
