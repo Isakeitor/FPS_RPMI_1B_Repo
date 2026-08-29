@@ -19,6 +19,8 @@ public class DragObject : Interactable
 
     private Transform player;
 
+    private Vector3 moveVelocity;
+
     private void Start()
     {
         interactionText = "Drag";
@@ -31,6 +33,9 @@ public class DragObject : Interactable
 
         isDragging = !isDragging;
 
+        // Reiniciar velocidad al empezar o terminar de arrastrar
+        moveVelocity = Vector3.zero;
+
         SetInteractionText(isDragging ? "Release" : "Drag");
     }
 
@@ -39,7 +44,7 @@ public class DragObject : Interactable
         if (!isDragging || player == null)
             return;
 
-        // Posición delante del jugador, incluyendo altura
+        // Posición objetivo delante del jugador
         Vector3 targetPosition =
             player.position + player.forward * dragDistance;
 
@@ -56,18 +61,23 @@ public class DragObject : Interactable
             groundLayer
         ))
         {
-            // Mantener el objeto por encima del suelo
-            float objectHeight = GetComponent<Collider>().bounds.extents.y;
+            Collider objectCollider = GetComponent<Collider>();
 
-            targetPosition.y =
-                hit.point.y + objectHeight + groundOffset;
+            if (objectCollider != null)
+            {
+                float objectHeight = objectCollider.bounds.extents.y;
+
+                targetPosition.y =
+                    hit.point.y + objectHeight + groundOffset;
+            }
         }
 
-        // Movimiento
-        transform.position = Vector3.Lerp(
+        // Movimiento suave
+        transform.position = Vector3.SmoothDamp(
             transform.position,
             targetPosition,
-            Time.deltaTime * dragSpeed
+            ref moveVelocity,
+            1f / dragSpeed
         );
 
         // Rotación con el jugador
@@ -77,7 +87,7 @@ public class DragObject : Interactable
             0f
         );
 
-        transform.rotation = Quaternion.Lerp(
+        transform.rotation = Quaternion.Slerp(
             transform.rotation,
             targetRotation,
             Time.deltaTime * rotationSpeed
