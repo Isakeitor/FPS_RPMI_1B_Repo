@@ -4,12 +4,12 @@ public class Bullet : MonoBehaviour
 {
     public int damage = 10;
 
-    void Start()
+    private void Start()
     {
         Destroy(gameObject, 5f);
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))
         {
@@ -19,6 +19,13 @@ public class Bullet : MonoBehaviour
             {
                 player.TakeDamage(damage);
             }
+        }
+
+        DragObject dragObject = collision.collider.GetComponent<DragObject>();
+
+        if (dragObject != null)
+        {
+            dragObject.TakeBulletHit();
         }
 
         Destroy(gameObject);

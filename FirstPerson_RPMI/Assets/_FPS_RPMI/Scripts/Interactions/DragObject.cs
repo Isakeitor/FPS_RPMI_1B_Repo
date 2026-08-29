@@ -2,12 +2,18 @@ using UnityEngine;
 
 public class DragObject : Interactable
 {
-    public float dragSpeed = 10f;
-    bool isDragging = false;
+    [Header("Dragging")]
+    [SerializeField] private float dragSpeed = 10f;
 
-    Transform player;
+    [Header("Break System")]
+    [SerializeField] private int hitsToBreak = 3;
 
-    void Start()
+    private bool isDragging = false;
+    private int currentHits = 0;
+
+    private Transform player;
+
+    private void Start()
     {
         interactionText = "Drag";
         player = Camera.main.transform;
@@ -18,17 +24,39 @@ public class DragObject : Interactable
         base.Interact();
 
         isDragging = !isDragging;
+
         SetInteractionText(isDragging ? "Release" : "Drag");
     }
 
-    void Update()
+    private void Update()
     {
         if (isDragging)
         {
             Vector3 target = player.position + player.forward * 2f;
             target.y = transform.position.y;
 
-            transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * dragSpeed);
+            transform.position = Vector3.Lerp(
+                transform.position,
+                target,
+                Time.deltaTime * dragSpeed
+            );
         }
+    }
+
+    public void TakeBulletHit()
+    {
+        currentHits++;
+
+        if (currentHits >= hitsToBreak)
+        {
+            BreakObject();
+        }
+    }
+
+    private void BreakObject()
+    {
+        isDragging = false;
+
+        gameObject.SetActive(false);
     }
 }
