@@ -11,7 +11,10 @@ public class CajaFuerte : Interactable
     [Header("UI")]
     public GameObject codePanel;
     public InputField codeInput;
-    public GameObject victoryPanel; 
+    public GameObject victoryPanel;
+
+    [Header("Audio")]
+    public AudioSource correctCodeAudio;
 
     void Start()
     {
@@ -36,6 +39,11 @@ public class CajaFuerte : Interactable
     {
         if (codeInput.text == correctCode)
         {
+            if (correctCodeAudio != null)
+            {
+                correctCodeAudio.Play();
+            }
+
             codePanel.SetActive(false);
 
             victoryPanel.SetActive(true);

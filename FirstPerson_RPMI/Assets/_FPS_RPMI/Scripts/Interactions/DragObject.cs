@@ -14,6 +14,10 @@ public class DragObject : Interactable
     [Header("Break System")]
     [SerializeField] private int hitsToBreak = 3;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource grabAudio;
+    [SerializeField] private AudioSource breakAudio;
+
     private bool isDragging = false;
     private int currentHits = 0;
 
@@ -35,6 +39,12 @@ public class DragObject : Interactable
 
         // Reiniciar velocidad al empezar o terminar de arrastrar
         moveVelocity = Vector3.zero;
+
+        // Sonido al agarrar
+        if (isDragging && grabAudio != null)
+        {
+            grabAudio.Play();
+        }
 
         SetInteractionText(isDragging ? "Release" : "Drag");
     }
@@ -107,6 +117,12 @@ public class DragObject : Interactable
     private void BreakObject()
     {
         isDragging = false;
+
+        // Sonido al romperse
+        if (breakAudio != null)
+        {
+            breakAudio.Play();
+        }
 
         gameObject.SetActive(false);
     }

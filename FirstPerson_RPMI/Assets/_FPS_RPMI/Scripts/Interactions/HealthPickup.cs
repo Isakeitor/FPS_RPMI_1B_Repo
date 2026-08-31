@@ -9,6 +9,9 @@ public class HealthPickup : Interactable
     [Header("Respawn")]
     [SerializeField] private float respawnTime = 50f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource pickupAudio;
+
     private Vector3 originalPosition;
     private Quaternion originalRotation;
     private Vector3 originalScale;
@@ -57,6 +60,12 @@ public class HealthPickup : Interactable
         }
 
         ph.HealFull();
+
+        // Sonido al recoger
+        if (pickupAudio != null)
+        {
+            pickupAudio.Play();
+        }
 
         if (particles != null)
         {

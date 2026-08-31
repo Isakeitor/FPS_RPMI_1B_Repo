@@ -24,6 +24,9 @@ public class EnemyAIBase : MonoBehaviour
     [SerializeField] float shootSpeedZ = 10f;
     bool alreadyAttacked;
 
+    [Header("Attack Audio")]
+    [SerializeField] AudioSource shootAudio;
+
     [Header("States & Detection Areas")]
     [SerializeField] float sightRange = 8f;
     [SerializeField] float attackRange = 2f;
@@ -246,6 +249,11 @@ public class EnemyAIBase : MonoBehaviour
                 transform.forward * shootSpeedZ,
                 ForceMode.Impulse
             );
+
+            if (shootAudio != null)
+            {
+                shootAudio.Play();
+            }
 
             alreadyAttacked = true;
 

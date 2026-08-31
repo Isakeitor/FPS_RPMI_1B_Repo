@@ -16,6 +16,9 @@ public class WallCode : Interactable
     public Animator targetAnimator;
     public string animationTrigger = "Open";
 
+    [Header("Audio")]
+    public AudioSource correctCodeAudio;
+
     bool activated = false;
 
     void Start()
@@ -46,6 +49,7 @@ public class WallCode : Interactable
         EventSystem.current.SetSelectedGameObject(codeInput.gameObject);
         codeInput.ActivateInputField();
     }
+
     public void CheckCode()
     {
         if (codeInput.text == correctCode)
@@ -61,6 +65,11 @@ public class WallCode : Interactable
     void ActivateWall()
     {
         activated = true;
+
+        if (correctCodeAudio != null)
+        {
+            correctCodeAudio.Play();
+        }
 
         if (targetAnimator != null)
         {

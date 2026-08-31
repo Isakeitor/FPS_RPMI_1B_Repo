@@ -16,6 +16,9 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] GameObject deathVfx;
     [SerializeField] MeshRenderer enemyRend;
 
+    [Header("Death Audio")]
+    [SerializeField] AudioSource deathAudio;
+
     Material baseMat;
 
     private Vector3 originalPosition;
@@ -77,6 +80,12 @@ public class EnemyHealth : MonoBehaviour
     {
         health = 0;
         respawning = true;
+
+        // Sonido de muerte
+        if (deathAudio != null)
+        {
+            deathAudio.Play();
+        }
 
         // Detener la IA inmediatamente
         if (enemyAI != null)

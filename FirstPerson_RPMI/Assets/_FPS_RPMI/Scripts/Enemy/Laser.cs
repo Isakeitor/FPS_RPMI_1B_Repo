@@ -11,6 +11,9 @@ public class Laser : MonoBehaviour
     [SerializeField] private Renderer laserRenderer;
     [SerializeField] private Collider laserCollider;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource damageSound;
+
     private bool isActive = true;
     private float stateTimer;
     private float damageTimer;
@@ -73,6 +76,10 @@ public class Laser : MonoBehaviour
         if (damageTimer >= 1f)
         {
             player.TakeDamage(damagePerSecond);
+
+            if (damageSound != null)
+                damageSound.Play();
+
             damageTimer = 0f;
         }
     }

@@ -7,6 +7,7 @@ using TMPro;
 public class GunSystem : MonoBehaviour
 {
     #region General Variables
+
     [Header("General References")]
     [SerializeField] Camera fpsCam;
     [SerializeField] Transform shootPoint;
@@ -16,6 +17,11 @@ public class GunSystem : MonoBehaviour
     [Header("VFX")]
     [SerializeField] GameObject muzzleVFX;
     [SerializeField] GameObject hitVFX;
+
+    [Header("Audio")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip shootSound;
+    [SerializeField] AudioClip emptyAmmoSound;
 
     [Header("Weapon Parameters")]
     [SerializeField] int damage = 10;
@@ -46,6 +52,7 @@ public class GunSystem : MonoBehaviour
     [SerializeField] float zoomSpeed = 10f;
 
     float targetFOV;
+
     #endregion
 
     void Awake()
@@ -89,7 +96,8 @@ public class GunSystem : MonoBehaviour
 
         for (int i = 0; i < bulletsPerTap; i++)
         {
-            if (bulletsLeft <= 0) break;
+            if (bulletsLeft <= 0)
+                break;
 
             Shoot();
             bulletsLeft--;
@@ -101,6 +109,12 @@ public class GunSystem : MonoBehaviour
 
     void Shoot()
     {
+        // 🔊 SONIDO DE DISPARO
+        if (audioSource != null && shootSound != null)
+        {
+            audioSource.PlayOneShot(shootSound);
+        }
+
         // 🔥 MUZZLE FLASH
         if (muzzleVFX != null && shootPoint != null)
         {
@@ -205,7 +219,20 @@ public class GunSystem : MonoBehaviour
         else
         {
             if (context.performed)
+            {
+                if (bulletsLeft <= 0)
+                {
+                    // 🚫 SONIDO SIN MUNICIÓN
+                    if (audioSource != null && emptyAmmoSound != null)
+                    {
+                        audioSource.PlayOneShot(emptyAmmoSound);
+                    }
+
+                    return;
+                }
+
                 shooting = true;
+            }
         }
     }
 
