@@ -35,4 +35,9 @@ public class Timer : MonoBehaviour
         elapsedTime = 0f;
         timerRunning = true;
     }
+
+    public float GetElapsedTime()
+    {
+        return elapsedTime;
+    }
 }

@@ -20372,6 +20372,10 @@ PrefabInstance:
       propertyPath: enemyRend
       value: 
       objectReference: {fileID: 2146946423}
+    - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: respawnTime
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 9038480648699461996, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -28675,6 +28679,10 @@ PrefabInstance:
       propertyPath: enemyRend
       value: 
       objectReference: {fileID: 1130221895}
+    - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: respawnTime
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 9038480648699461996, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -29207,6 +29215,10 @@ PrefabInstance:
       propertyPath: enemyRend
       value: 
       objectReference: {fileID: 1379797619}
+    - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: respawnTime
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 9038480648699461996, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -32899,6 +32911,10 @@ PrefabInstance:
       propertyPath: enemyRend
       value: 
       objectReference: {fileID: 158686754}
+    - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: respawnTime
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 9038480648699461996, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -65458,7 +65474,7 @@ MonoBehaviour:
   outlineObject: {fileID: 0}
   interactSound: {fileID: 0}
   particles: {fileID: 0}
-  respawnTime: 50
+  respawnTime: 45
 --- !u!1001 &1489887600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66252,6 +66268,10 @@ PrefabInstance:
       propertyPath: enemyRend
       value: 
       objectReference: {fileID: 1858650320}
+    - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: respawnTime
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 9038480648699461996, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -69567,7 +69587,7 @@ MonoBehaviour:
   outlineObject: {fileID: 0}
   interactSound: {fileID: 0}
   particles: {fileID: 0}
-  respawnTime: 50
+  respawnTime: 45
 --- !u!1 &1581756934
 GameObject:
   m_ObjectHideFlags: 0
@@ -71140,6 +71160,10 @@ PrefabInstance:
       propertyPath: enemyRend
       value: 
       objectReference: {fileID: 1212881075}
+    - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: respawnTime
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 9038480648699461996, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -80991,7 +81015,7 @@ MonoBehaviour:
   outlineObject: {fileID: 0}
   interactSound: {fileID: 0}
   particles: {fileID: 0}
-  respawnTime: 50
+  respawnTime: 45
 --- !u!1 &1828876089 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2309337605255934208, guid: f24a574d5a9546f439ae838b701c0719, type: 3}
@@ -89232,6 +89256,10 @@ PrefabInstance:
       propertyPath: enemyRend
       value: 
       objectReference: {fileID: 1699270900}
+    - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: respawnTime
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 9038480648699461996, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -96598,6 +96626,10 @@ PrefabInstance:
     - target: {fileID: 4278278334196304537, guid: 914db4423f275d54d8d233acd8df8eaf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815767295904798290, guid: 914db4423f275d54d8d233acd8df8eaf, type: 3}
+      propertyPath: respawnTime
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

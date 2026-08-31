@@ -14799,7 +14799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmmoPickup
   ammoAmount: 10
-  respawnTime: 20
+  respawnTime: 30
 --- !u!114 &345322233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15083,7 +15083,7 @@ MonoBehaviour:
   outlineObject: {fileID: 0}
   interactSound: {fileID: 0}
   particles: {fileID: 0}
-  respawnTime: 50
+  respawnTime: 60
 --- !u!1 &354872144
 GameObject:
   m_ObjectHideFlags: 0
@@ -20318,6 +20318,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1589916095965535556, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: m_Speed
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2618237634513284717, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -20404,7 +20408,11 @@ PrefabInstance:
       objectReference: {fileID: 2660997778107864922, guid: 116b455eca1e7004998c83f07b9a146d, type: 3}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: sightRange
-      value: 6.5
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: attackRange
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: shootSpeedZ
@@ -20420,7 +20428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: timeBetweenAttacks
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8101267002603780367, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20457,6 +20465,10 @@ PrefabInstance:
     - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: maxHealth
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: respawnTime
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9038480648699461996, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Enabled
@@ -23109,7 +23121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmmoPickup
   ammoAmount: 10
-  respawnTime: 20
+  respawnTime: 30
 --- !u!114 &536206089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28625,6 +28637,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1589916095965535556, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: m_Speed
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2618237634513284717, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -28711,7 +28727,11 @@ PrefabInstance:
       objectReference: {fileID: 2660997778107864922, guid: 116b455eca1e7004998c83f07b9a146d, type: 3}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: sightRange
-      value: 6.5
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: attackRange
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: shootSpeedZ
@@ -28727,7 +28747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: timeBetweenAttacks
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8101267002603780367, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28764,6 +28784,10 @@ PrefabInstance:
     - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: maxHealth
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: respawnTime
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9038480648699461996, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Enabled
@@ -29161,6 +29185,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1589916095965535556, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: m_Speed
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2618237634513284717, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -29247,7 +29275,11 @@ PrefabInstance:
       objectReference: {fileID: 2660997778107864922, guid: 116b455eca1e7004998c83f07b9a146d, type: 3}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: sightRange
-      value: 6.5
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: attackRange
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: shootSpeedZ
@@ -29263,7 +29295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: timeBetweenAttacks
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8101267002603780367, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29300,6 +29332,10 @@ PrefabInstance:
     - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: maxHealth
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: respawnTime
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9038480648699461996, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Enabled
@@ -29663,6 +29699,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1589916095965535556, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: m_Speed
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2618237634513284717, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -29749,11 +29789,11 @@ PrefabInstance:
       objectReference: {fileID: 2660997778107864922, guid: 116b455eca1e7004998c83f07b9a146d, type: 3}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: sightRange
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: attackRange
-      value: 5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: groundLayer.m_Bits
@@ -29765,7 +29805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: timeBetweenAttacks
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8101267002603780367, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29802,6 +29842,10 @@ PrefabInstance:
     - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: maxHealth
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: respawnTime
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9038480648699461996, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Enabled
@@ -33222,6 +33266,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1589916095965535556, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: m_Speed
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2618237634513284717, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -33308,7 +33356,11 @@ PrefabInstance:
       objectReference: {fileID: 2660997778107864922, guid: 116b455eca1e7004998c83f07b9a146d, type: 3}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: sightRange
-      value: 6.5
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: attackRange
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: shootSpeedZ
@@ -33324,7 +33376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: timeBetweenAttacks
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8101267002603780367, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33361,6 +33413,10 @@ PrefabInstance:
     - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: maxHealth
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: respawnTime
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9038480648699461996, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Enabled
@@ -36324,7 +36380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmmoPickup
   ammoAmount: 10
-  respawnTime: 20
+  respawnTime: 30
 --- !u!114 &833795902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58516,7 +58572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmmoPickup
   ammoAmount: 10
-  respawnTime: 20
+  respawnTime: 30
 --- !u!114 &1334534670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58916,7 +58972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmmoPickup
   ammoAmount: 10
-  respawnTime: 20
+  respawnTime: 30
 --- !u!114 &1347221673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66008,7 +66064,7 @@ MonoBehaviour:
   outlineObject: {fileID: 0}
   interactSound: {fileID: 0}
   particles: {fileID: 0}
-  respawnTime: 50
+  respawnTime: 60
 --- !u!1001 &1489887600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66666,6 +66722,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1589916095965535556, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: m_Speed
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2618237634513284717, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -66752,7 +66812,11 @@ PrefabInstance:
       objectReference: {fileID: 2660997778107864922, guid: 116b455eca1e7004998c83f07b9a146d, type: 3}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: sightRange
-      value: 6.5
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: attackRange
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: shootSpeedZ
@@ -66768,7 +66832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: timeBetweenAttacks
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8101267002603780367, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -66805,6 +66869,10 @@ PrefabInstance:
     - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: maxHealth
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: respawnTime
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9038480648699461996, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Enabled
@@ -70121,7 +70189,7 @@ MonoBehaviour:
   outlineObject: {fileID: 0}
   interactSound: {fileID: 0}
   particles: {fileID: 0}
-  respawnTime: 50
+  respawnTime: 60
 --- !u!1 &1581756934
 GameObject:
   m_ObjectHideFlags: 0
@@ -71562,6 +71630,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1589916095965535556, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: m_Speed
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2618237634513284717, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -71648,11 +71720,11 @@ PrefabInstance:
       objectReference: {fileID: 2660997778107864922, guid: 116b455eca1e7004998c83f07b9a146d, type: 3}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: sightRange
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: attackRange
-      value: 5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: groundLayer.m_Bits
@@ -71664,7 +71736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: timeBetweenAttacks
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8101267002603780367, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -71701,6 +71773,10 @@ PrefabInstance:
     - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: maxHealth
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: respawnTime
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9038480648699461996, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Enabled
@@ -76057,7 +76133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmmoPickup
   ammoAmount: 10
-  respawnTime: 20
+  respawnTime: 30
 --- !u!114 &1706738043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76193,7 +76269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmmoPickup
   ammoAmount: 10
-  respawnTime: 20
+  respawnTime: 30
 --- !u!114 &1707443853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81658,7 +81734,7 @@ MonoBehaviour:
   outlineObject: {fileID: 0}
   interactSound: {fileID: 0}
   particles: {fileID: 0}
-  respawnTime: 50
+  respawnTime: 60
 --- !u!1 &1828876089 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2309337605255934208, guid: f24a574d5a9546f439ae838b701c0719, type: 3}
@@ -89768,6 +89844,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1589916095965535556, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: m_Speed
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2618237634513284717, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -89854,11 +89934,11 @@ PrefabInstance:
       objectReference: {fileID: 2660997778107864922, guid: 116b455eca1e7004998c83f07b9a146d, type: 3}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: sightRange
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: attackRange
-      value: 5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: groundLayer.m_Bits
@@ -89870,7 +89950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963709861712396349, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: timeBetweenAttacks
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8101267002603780367, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -89907,6 +89987,10 @@ PrefabInstance:
     - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: maxHealth
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715184009441056255, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
+      propertyPath: respawnTime
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9038480648699461996, guid: 5d066836a169c14419d19fd79836ada0, type: 3}
       propertyPath: m_Enabled
