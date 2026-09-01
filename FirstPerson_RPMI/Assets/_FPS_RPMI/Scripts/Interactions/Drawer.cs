@@ -4,6 +4,9 @@ public class Drawer : Interactable
 {
     public Animator anim;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+
     bool isOpen = false;
 
     public override void Interact()
@@ -16,5 +19,8 @@ public class Drawer : Interactable
             anim.SetTrigger("Open");
         else
             anim.SetTrigger("Close");
+
+        if (audioSource != null)
+            audioSource.Play();
     }
 }

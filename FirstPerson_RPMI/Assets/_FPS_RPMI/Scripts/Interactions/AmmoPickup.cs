@@ -9,6 +9,9 @@ public class AmmoPickup : MonoBehaviour
     [Header("Respawn")]
     [SerializeField] private float respawnTime = 20f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource pickupAudio;
+
     private Vector3 originalPosition;
     private Quaternion originalRotation;
     private Vector3 originalScale;
@@ -41,6 +44,12 @@ public class AmmoPickup : MonoBehaviour
         if (gun != null)
         {
             gun.AddAmmo(ammoAmount);
+
+            // Sonido al recoger las balas
+            if (pickupAudio != null)
+            {
+                pickupAudio.Play();
+            }
 
             StartCoroutine(RespawnRoutine());
         }
